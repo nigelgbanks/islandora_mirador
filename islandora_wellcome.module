@@ -1,0 +1,33 @@
+<?php
+
+function islandora_wellcome_menu() {
+  $items = array();
+  $items['islandora_wellcome/view'] = array(
+      'title' => 'Islandora Wellcome Viewer',
+      'page callback' => 'islandora_wellcome_viewer',
+      'access arguments' => array(TRUE),
+      'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+function islandora_wellcome_theme($existing, $type, $theme, $path) {
+  return array(
+    'islandora_wellcome_viewer' => array(
+      'template' => 'theme/islandora-wellcome-viewer',
+      'variables' => array(
+        'object' => NULL,
+        'path' => NULL,
+      ),
+    ),
+  );
+}
+
+function islandora_wellcome_viewer() {
+  $module_path = drupal_get_path('module', 'islandora_wellcome') . "/player";
+  return theme('islandora_wellcome_viewer', array(
+    'object' => NULL,
+    'path' => $module_path,
+    )
+  );
+}
