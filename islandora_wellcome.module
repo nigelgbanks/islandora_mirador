@@ -52,7 +52,6 @@ function islandora_wellcome_viewer_dzi_uri($fedora_object) {
  * Implements hook_theme().
  */
 function islandora_wellcome_theme($existing, $type, $theme, $path) {
-	dsm(array(), "hit theme");
   return array(
     'islandora_wellcome_viewer' => array(
       'template' => 'theme/islandora-wellcome-viewer',
@@ -70,7 +69,6 @@ function islandora_wellcome_theme($existing, $type, $theme, $path) {
  */
 function islandora_wellcome_viewer() {
   global $base_url;
-  dsm(array(), "hit theme");
   $module_path = drupal_get_path('module', 'islandora_wellcome');
   return theme('islandora_wellcome_viewer', array(
     'object' => NULL,
@@ -94,7 +92,7 @@ function islandora_wellcome_preprocess_islandora_wellcome_viewer(&$variables) {
  * Return JSON data representing this book.
  */
 function islandora_wellcome_viewer_data_uri() {
-  $test_pid = "islandora:38";
+  $test_pid = "islandora%3A38";
   global $base_url;
 
   $fedora_object = islandora_object_load($test_pid);
@@ -159,7 +157,7 @@ function islandora_wellcome_viewer_data_uri() {
         "orderLabel" => " - ",
         "width" => 2643,
         "height" => 3965,
-        "dziUri" => "/islandora_wellcome/dzi/$fedora_object->id/page_1/",
+        "dziUri" => "/sites/all/modules/islandora_wellcome/my_dz_dir.dzi",
         "navigatorPath" => "/islandora/object/$fedora_object->id/datastream/TN/view",
         "thumbnailPath" => "/islandora/object/$fedora_object->id/datastream/TN/view"
       ),
@@ -170,7 +168,7 @@ function islandora_wellcome_viewer_data_uri() {
         "orderLabel" => " - ", 
         "width" => 2643, 
         "height" => 3965, 
-        "dziUri" => "/islandora_wellcome/dzi/$fedora_object->id/page_2/",
+        "dziUri" => "/sites/all/modules/islandora_wellcome/my_dz_dir.dzi",
         "navigatorPath" => "/islandora/object/$fedora_object->id/datastream/TN/view", 
         "thumbnailPath" => "/islandora/object/$fedora_object->id/datastream/TN/view"
       )
