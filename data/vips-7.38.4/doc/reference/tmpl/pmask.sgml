@@ -1,0 +1,117 @@
+<!-- ##### SECTION Title ##### -->
+VipsMask
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### STRUCT VipsMask ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG VipsMask:nodc ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG VipsMask:optical ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG VipsMask:reject ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT VipsMaskClass ##### -->
+<para>
+
+</para>
+
+@parent_class: 
+@point: 
+
+<!-- ##### STRUCT VipsMaskIdeal ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG VipsMaskIdeal:frequency-cutoff ##### -->
+<para>
+
+</para>
+
+<!-- ##### TYPEDEF VipsMaskIdealClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT VipsMaskButterworth ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG VipsMaskButterworth:amplitude-cutoff ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG VipsMaskButterworth:frequency-cutoff ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG VipsMaskButterworth:order ##### -->
+<para>
+
+</para>
+
+<!-- ##### TYPEDEF VipsMaskButterworthClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT VipsMaskGaussian ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG VipsMaskGaussian:amplitude-cutoff ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG VipsMaskGaussian:frequency-cutoff ##### -->
+<para>
+
+</para>
+
+<!-- ##### TYPEDEF VipsMaskGaussianClass ##### -->
+<para>
+
+</para>
+
+

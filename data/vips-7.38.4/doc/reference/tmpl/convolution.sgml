@@ -1,0 +1,100 @@
+<!-- ##### SECTION Title ##### -->
+convolution
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### ENUM VipsPrecision ##### -->
+<para>
+
+</para>
+
+@VIPS_PRECISION_INTEGER: 
+@VIPS_PRECISION_FLOAT: 
+@VIPS_PRECISION_APPROXIMATE: 
+@VIPS_PRECISION_LAST: 
+
+<!-- ##### ENUM VipsCombine ##### -->
+<para>
+
+</para>
+
+@VIPS_COMBINE_MAX: 
+@VIPS_COMBINE_SUM: 
+@VIPS_COMBINE_LAST: 
+
+<!-- ##### FUNCTION vips_conv ##### -->
+<para>
+
+</para>
+
+@in: 
+@out: 
+@mask: 
+@...: 
+@Returns: 
+
+
+<!-- ##### FUNCTION vips_compass ##### -->
+<para>
+
+</para>
+
+@in: 
+@out: 
+@mask: 
+@...: 
+@Returns: 
+
+
+<!-- ##### FUNCTION vips_convsep ##### -->
+<para>
+
+</para>
+
+@in: 
+@out: 
+@mask: 
+@...: 
+@Returns: 
+
+
+<!-- ##### FUNCTION vips_sharpen ##### -->
+<para>
+
+</para>
+
+@in: 
+@out: 
+@...: 
+@Returns: 
+
+
+<!-- ##### FUNCTION vips_gaussblur ##### -->
+<para>
+
+</para>
+
+@in: 
+@out: 
+@radius: 
+@...: 
+@Returns: 
+
+

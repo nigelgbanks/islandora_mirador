@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>morphology</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="VIPS Reference Manual">
+<link rel="up" href="ch02.html" title="VIPS operation API by section">
+<link rel="prev" href="VipsInterpolate.html" title="VipsInterpolate">
+<link rel="next" href="libvips-mosaicing.html" title="mosaicing">
+<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="VipsInterpolate.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">VIPS Reference Manual</th>
+<td><a accesskey="n" href="libvips-mosaicing.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#libvips-morphology.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#libvips-morphology.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="libvips-morphology"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="libvips-morphology.top_of_page"></a>morphology</span></h2>
+<p>morphology — morphological operators, rank filters and related image 
+analysis</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="libvips-morphology.stability-level"></a><h2>Stability Level</h2>
+Stable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="libvips-morphology.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;vips/vips.h&gt;
+
+enum                <a class="link" href="libvips-morphology.html#VipsOperationMorphology" title="enum VipsOperationMorphology">VipsOperationMorphology</a>;
+<span class="returnvalue">int</span>                 <a class="link" href="libvips-morphology.html#vips-morph" title="vips_morph ()">vips_morph</a>                          (<em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *in</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> **out</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *mask</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="libvips-morphology.html#VipsOperationMorphology" title="enum VipsOperationMorphology"><span class="type">VipsOperationMorphology</span></a> morph</code></em>,
+                                                         <em class="parameter"><code>...</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="libvips-morphology.html#vips-rank" title="vips_rank ()">vips_rank</a>                           (<em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *in</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> **out</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> width</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> height</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> index</code></em>,
+                                                         <em class="parameter"><code>...</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="libvips-morphology.html#vips-countlines" title="vips_countlines ()">vips_countlines</a>                     (<em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *in</code></em>,
+                                                         <em class="parameter"><code><span class="type">double</span> *nolines</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="libvips-conversion.html#VipsDirection" title="enum VipsDirection"><span class="type">VipsDirection</span></a> direction</code></em>,
+                                                         <em class="parameter"><code>...</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="libvips-morphology.html#vips-median" title="vips_median ()">vips_median</a>                         (<em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *in</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> **out</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> size</code></em>,
+                                                         <em class="parameter"><code>...</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="libvips-morphology.html#im-label-regions" title="im_label_regions ()">im_label_regions</a>                    (<em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *test</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *mask</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> *segments</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="libvips-morphology.description"></a><h2>Description</h2>
+<p>
+The morphological functions search images
+for particular patterns of pixels, specified with the mask argument,
+either adding or removing pixels when they find a match. They are useful
+for cleaning up images --- for example, you might threshold an image, and
+then use one of the morphological functions to remove all single isolated
+pixels from the result.
+</p>
+<p>
+If you combine the morphological operators with the mask rotators
+<a href="http://http://www.vips.ecs.soton.ac.uk/libvips-mask.html#im-rotate-imask45"><code class="function">im_rotate_imask45()</code></a>, for example) and apply them repeatedly, you
+can achieve very complicated effects: you can thin, prune, fill, open edges,
+close gaps, and many others. For example, see `Fundamentals  of  Digital
+Image Processing' by A.  Jain, pp 384-388, Prentice-Hall, 1989 for more 
+ideas.
+</p>
+<p>
+Beware that VIPS reverses the usual image processing convention, by 
+assuming white objects (non-zero pixels) on a black background (zero
+pixels).
+</p>
+<p>
+The mask you give to the morphological functions should contain only the
+values 0 (for background), 128 (for don't care) and 255 (for object). The
+mask must have odd length sides --- the origin of the mask is taken to be
+the centre value. For example, the mask:
+</p>
+<p>
+  3 3 
+  128 255 128
+  255 0   255
+  128 255 128
+</p>
+<p>
+applied to an image with <a href="http://http://www.vips.ecs.soton.ac.uk/libvips-morphology.html#im-erode"><code class="function">im_erode()</code></a>, will find all black pixels
+4-way connected with white pixels. Essentially, <a href="http://http://www.vips.ecs.soton.ac.uk/libvips-morphology.html#im-dilate"><code class="function">im_dilate()</code></a>
+sets pixels in the output if any part of the mask matches, whereas
+<a href="http://http://www.vips.ecs.soton.ac.uk/libvips-morphology.html#im-erode"><code class="function">im_erode()</code></a> sets pixels only if all of the mask matches.
+</p>
+<p>
+See <code class="function">im_andimage()</code>, <code class="function">im_orimage()</code> and <code class="function">im_eorimage()</code>
+for analogues of the usual set difference and set union operations.
+</p>
+</div>
+<div class="refsect1">
+<a name="libvips-morphology.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="VipsOperationMorphology"></a><h3>enum VipsOperationMorphology</h3>
+<pre class="programlisting">typedef enum {
+	VIPS_OPERATION_MORPHOLOGY_ERODE,
+	VIPS_OPERATION_MORPHOLOGY_DILATE,
+	VIPS_OPERATION_MORPHOLOGY_LAST
+} VipsOperationMorphology;
+</pre>
+<p>
+More like hit-miss, really. 
+</p>
+<p>
+See also: <a class="link" href="libvips-morphology.html#vips-morph" title="vips_morph ()"><code class="function">vips_morph()</code></a>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><a name="VIPS-OPERATION-MORPHOLOGY-ERODE:CAPS"></a><span class="term"><code class="literal">VIPS_OPERATION_MORPHOLOGY_ERODE</code></span></p></td>
+<td>true if all set
+</td>
+</tr>
+<tr>
+<td><p><a name="VIPS-OPERATION-MORPHOLOGY-DILATE:CAPS"></a><span class="term"><code class="literal">VIPS_OPERATION_MORPHOLOGY_DILATE</code></span></p></td>
+<td>true if one set
+</td>
+</tr>
+<tr>
+<td><p><a name="VIPS-OPERATION-MORPHOLOGY-LAST:CAPS"></a><span class="term"><code class="literal">VIPS_OPERATION_MORPHOLOGY_LAST</code></span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="vips-morph"></a><h3>vips_morph ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 vips_morph                          (<em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *in</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> **out</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *mask</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="libvips-morphology.html#VipsOperationMorphology" title="enum VipsOperationMorphology"><span class="type">VipsOperationMorphology</span></a> morph</code></em>,
+                                                         <em class="parameter"><code>...</code></em>);</pre>
+<p>
+Performs a morphological operation on <em class="parameter"><code>in</code></em> using <em class="parameter"><code>mask</code></em> as a
+structuring element. 
+</p>
+<p>
+The image should have 0 (black) for no object and 255
+(non-zero) for an object. Note that this is the reverse of the usual
+convention for these operations, but more convenient when combined with the
+boolean operators. The output image is the same
+size as the input image: edge pxels are made by expanding the input image
+as necessary.
+</p>
+<p>
+Mask coefficients can be either 0 (for object) or 255 (for background) 
+or 128 (for do not care).  The origin of the mask is at location
+(m.xsize / 2, m.ysize / 2), integer division.  All algorithms have been 
+based on the book "Fundamentals of Digital Image Processing" by A. Jain, 
+pp 384-388, Prentice-Hall, 1989. 
+</p>
+<p>
+For <span class="type">VIPS_OPERATION_MOPHOLOGY_ERODE</span>, 
+the whole mask must match for the output pixel to be
+set, that is, the result is the logical AND of the selected input pixels.
+</p>
+<p>
+For <span class="type">VIPS_OPERATION_MOPHOLOGY_DILATE</span>, 
+the output pixel is set if any part of the mask 
+matches, that is, the result is the logical OR of the selected input pixels.
+</p>
+<p>
+See the boolean operations <a class="link" href="libvips-arithmetic.html#vips-andimage" title="vips_andimage ()"><code class="function">vips_andimage()</code></a>, <a class="link" href="libvips-arithmetic.html#vips-orimage" title="vips_orimage ()"><code class="function">vips_orimage()</code></a> and 
+<a class="link" href="libvips-arithmetic.html#vips-eorimage" title="vips_eorimage ()"><code class="function">vips_eorimage()</code></a> 
+for analogues of the usual set difference and set union operations.
+</p>
+<p>
+Operations are performed using the processor's vector unit,
+if possible. Disable this with --vips-novector or IM_NOVECTOR.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>in</code></em> :</span></p></td>
+<td>input image</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out</code></em> :</span></p></td>
+<td>output image</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mask</code></em> :</span></p></td>
+<td>morphology with this mask</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>morph</code></em> :</span></p></td>
+<td>operation to perform</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+<code class="literal">NULL</code>-terminated list of optional named arguments</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success, -1 on error</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="vips-rank"></a><h3>vips_rank ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 vips_rank                           (<em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *in</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> **out</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> width</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> height</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> index</code></em>,
+                                                         <em class="parameter"><code>...</code></em>);</pre>
+<p>
+<a class="link" href="libvips-morphology.html#vips-rank" title="vips_rank ()"><code class="function">vips_rank()</code></a> does rank filtering on an image. A window of size <em class="parameter"><code>width</code></em> by
+<em class="parameter"><code>height</code></em> is passed over the image. At each position, the pixels inside the 
+window are sorted into ascending order and the pixel at position <em class="parameter"><code>index</code></em> is 
+output. <em class="parameter"><code>index</code></em> numbers from 0.
+</p>
+<p>
+It works for any non-complex image type, with any number of bands. 
+The input is expanded by copying edge pixels before performing the 
+operation so that the output image has the same size as the input. 
+Edge pixels in the output image are therefore only approximate.
+</p>
+<p>
+For a median filter with mask size m (3 for 3x3, 5 for 5x5, etc.) use
+</p>
+<p>
+ vips_rank( in, out, m, m, m * m / 2 );
+</p>
+<p>
+The special cases n == 0 and n == m * m - 1 are useful dilate and 
+expand operators.
+</p>
+<p>
+See also: <a class="link" href="libvips-convolution.html#vips-conv" title="vips_conv ()"><code class="function">vips_conv()</code></a>, <a class="link" href="libvips-morphology.html#vips-median" title="vips_median ()"><code class="function">vips_median()</code></a>, <code class="function">vips_spcor()</code>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>in</code></em> :</span></p></td>
+<td>input image</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out</code></em> :</span></p></td>
+<td>output image</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td>width of region</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td>height of region</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>index</code></em> :</span></p></td>
+<td>select pixel</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+<code class="literal">NULL</code>-terminated list of optional named arguments</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success, -1 on error</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="vips-countlines"></a><h3>vips_countlines ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 vips_countlines                     (<em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *in</code></em>,
+                                                         <em class="parameter"><code><span class="type">double</span> *nolines</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="libvips-conversion.html#VipsDirection" title="enum VipsDirection"><span class="type">VipsDirection</span></a> direction</code></em>,
+                                                         <em class="parameter"><code>...</code></em>);</pre>
+<p>
+Function which calculates the number of transitions
+between black and white for the horizontal or the vertical
+direction of an image.  black&lt;128 , white&gt;=128
+The function calculates the number of transitions for all
+Xsize or Ysize and returns the mean of the result
+Input should be one band, 8-bit.
+</p>
+<p>
+See also: <a class="link" href="libvips-morphology.html#vips-morph" title="vips_morph ()"><code class="function">vips_morph()</code></a>, <code class="function">vips_zerox()</code>, <a class="link" href="libvips-convolution.html#vips-conv" title="vips_conv ()"><code class="function">vips_conv()</code></a>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>in</code></em> :</span></p></td>
+<td>input image</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nolines</code></em> :</span></p></td>
+<td>output average number of lines</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>direction</code></em> :</span></p></td>
+<td>count lines horizontally or vertically</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+<code class="literal">NULL</code>-terminated list of optional named arguments</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success, -1 on error.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="vips-median"></a><h3>vips_median ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 vips_median                         (<em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *in</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> **out</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> size</code></em>,
+                                                         <em class="parameter"><code>...</code></em>);</pre>
+<p>
+A convenience function equivalent to:
+</p>
+<p>
+ vips_rank( in, out, size, size, (size * size) / 2 );
+</p>
+<p>
+See also: <a class="link" href="libvips-morphology.html#vips-rank" title="vips_rank ()"><code class="function">vips_rank()</code></a>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>in</code></em> :</span></p></td>
+<td>input image</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out</code></em> :</span></p></td>
+<td>output image</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td>size of region</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+<code class="literal">NULL</code>-terminated list of optional named arguments</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success, -1 on error</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="im-label-regions"></a><h3>im_label_regions ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 im_label_regions                    (<em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *test</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="VipsImage.html" title="VipsImage"><span class="type">VipsImage</span></a> *mask</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> *segments</code></em>);</pre>
+<p>
+<a class="link" href="libvips-morphology.html#im-label-regions" title="im_label_regions ()"><code class="function">im_label_regions()</code></a> repeatedly scans <em class="parameter"><code>test</code></em> for regions of 4-connected pixels
+with the same pixel value. Every time a region is discovered, those
+pixels are marked in <em class="parameter"><code>mask</code></em> with a unique serial number. Once all pixels
+have been labelled, the operation returns, setting <em class="parameter"><code>segments</code></em> to the number
+of discrete regions which were detected.
+</p>
+<p>
+<em class="parameter"><code>mask</code></em> is always a 1-band <code class="literal">IM_BANDFMT_UINT</code> image of the same dimensions as
+<em class="parameter"><code>test</code></em>.
+</p>
+<p>
+This operation is useful for, for example, blob counting. You can use the
+morphological operators to detect and isolate a series of objects, then use
+<a class="link" href="libvips-morphology.html#im-label-regions" title="im_label_regions ()"><code class="function">im_label_regions()</code></a> to number them all.
+</p>
+<p>
+Use <code class="function">im_histindexed()</code> to (for example) find blob coordinates.
+</p>
+<p>
+See also: <code class="function">im_histindexed()</code>
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>test</code></em> :</span></p></td>
+<td>image to test</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mask</code></em> :</span></p></td>
+<td>write labelled regions here</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>segments</code></em> :</span></p></td>
+<td>return number of regions here</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success, -1 on error.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="libvips-morphology.see-also"></a><h2>See Also</h2>
+boolean
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.19</div>
+</body>
+</html>

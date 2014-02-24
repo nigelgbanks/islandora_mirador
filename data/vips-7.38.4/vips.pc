@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: vips
+Description: Image processing library
+Version: 7.38.4
+Requires:  glib-2.0 libxml-2.0 gmodule-2.0 gobject-2.0 fftw3 MagickWand orc-0.4 lcms2 OpenEXR matio cfitsio pangoft2 libpng libexif
+Libs: -L${libdir} -lvips -lMagickWand -lMagickCore   -lpng12   -ltiff -lz -ljpeg  -Wl,--export-dynamic -pthread -lgmodule-2.0 -lrt -lxml2 -lgobject-2.0 -lglib-2.0   -lpangoft2-1.0 -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lglib-2.0   -lfftw3 -lm   -lorc-0.4   -llcms2   -pthread -lIlmImf -lz -lImath -lHalf -lIex -lIlmThread    -lcfitsio -lpthread    -lmatio -lz   -lexif   -lm -lstdc++
+Cflags: -I${includedir} 

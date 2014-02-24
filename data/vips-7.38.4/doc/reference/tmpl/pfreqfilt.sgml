@@ -1,0 +1,68 @@
+<!-- ##### SECTION Title ##### -->
+VipsFreqfilt
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### STRUCT VipsFreqfilt ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG VipsFreqfilt:in ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG VipsFreqfilt:out ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT VipsFreqfiltClass ##### -->
+<para>
+
+</para>
+
+@parent_class: 
+
+<!-- ##### USER_FUNCTION VipsFftProcessFn ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Param2: 
+@Param3: 
+@Returns: 
+
+
+<!-- ##### FUNCTION vips__fftproc ##### -->
+<para>
+
+</para>
+
+@context: 
+@in: 
+@out: 
+@fn: 
+@Returns: 
+
+

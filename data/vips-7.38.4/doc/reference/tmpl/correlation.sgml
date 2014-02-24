@@ -1,0 +1,53 @@
+<!-- ##### SECTION Title ##### -->
+VipsCorrelation
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### STRUCT VipsCorrelation ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG VipsCorrelation:in ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG VipsCorrelation:out ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG VipsCorrelation:ref ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT VipsCorrelationClass ##### -->
+<para>
+
+</para>
+
+@parent_class: 
+@format_table: 
+@pre_generate: 
+@correlation: 
+

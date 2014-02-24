@@ -1,0 +1,79 @@
+<!-- ##### SECTION Title ##### -->
+freqfilt
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### FUNCTION vips_fwfft ##### -->
+<para>
+
+</para>
+
+@in: 
+@out: 
+@...: 
+@Returns: 
+
+
+<!-- ##### FUNCTION vips_invfft ##### -->
+<para>
+
+</para>
+
+@in: 
+@out: 
+@...: 
+@Returns: 
+
+
+<!-- ##### FUNCTION vips_freqmult ##### -->
+<para>
+
+</para>
+
+@in: 
+@mask: 
+@out: 
+@...: 
+@Returns: 
+
+
+<!-- ##### FUNCTION vips_spectrum ##### -->
+<para>
+
+</para>
+
+@in: 
+@out: 
+@...: 
+@Returns: 
+
+
+<!-- ##### FUNCTION vips_phasecor ##### -->
+<para>
+
+</para>
+
+@in1: 
+@in2: 
+@out: 
+@...: 
+@Returns: 
+
+
