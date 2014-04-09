@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function islandora_mirador_menu() {
+  $items = array();
+  $items['islandora_mirador/view/%'] = array(
+    'title' => 'Islandora Mirador Viewer',
+    'page callback' => 'islandora_mirador_viewer',
+    'page arguments' => array(2),
+    'access arguments' => array(TRUE),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function islandora_mirador_theme($existing, $type, $theme, $path) {
+  return array(
+    'islandora_mirador_viewer' => array(
+      'template' => 'theme/islandora-mirador-viewer',
+      'variables' => array(
+        'object' => NULL,
+        'path' => NULL,
+        'base_path' => NULL,
+      ),
+    ),
+  );
+}
+
+/**
+ * Drupal menu callback..
+ */
+function islandora_mirador_viewer() {
+  global $base_url;
+  $module_path = drupal_get_path('module', 'islandora_mirador');
+  return theme('islandora_mirador_viewer', array(
+    'object' => NULL,
+    'path' => $module_path,
+    'base_path' => $base_url,
+    )
+  );
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function islandora_mirador_preprocess_islandora_mirador_viewer(&$variables) {
+
+  $render_array = array(
+  '#type' => 'container',
+  '#attributes' => array(
+    'class' => array('my-class'),
+  ),
+  'iframe' => array(
+    '#theme' => 'html_tag',
+    '#tag' => 'iframe',
+    '#value' => '',
+    '#attributes' => array(
+      'src' => array('http://discoverygarden-vagrant-i7latest.local/sites/all/modules/islandora_mirador/mirador/index.html'),
+      'width' => '100%',
+      'height' => '700px',
+      'frameborder' => '0',
+    ),
+  ),
+);
+;
+  $variables['object'] = drupal_render($render_array);
+}
