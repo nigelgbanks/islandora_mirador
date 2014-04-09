@@ -49,7 +49,9 @@ function islandora_mirador_viewer() {
  * Implements hook_preprocess().
  */
 function islandora_mirador_preprocess_islandora_mirador_viewer(&$variables) {
-
+  global $base_url;
+  // TODO: the iframe source makes me vomit. Fix it.
+  dsm($base_url, "host");
   $render_array = array(
   '#type' => 'container',
   '#attributes' => array(
@@ -60,7 +62,7 @@ function islandora_mirador_preprocess_islandora_mirador_viewer(&$variables) {
     '#tag' => 'iframe',
     '#value' => '',
     '#attributes' => array(
-      'src' => array('http://discoverygarden-vagrant-i7latest.local/sites/all/modules/islandora_mirador/mirador/index.html'),
+      'src' => array("$base_url/sites/all/modules/islandora_mirador/mirador_src/index.html"),
       'width' => '100%',
       'height' => '700px',
       'frameborder' => '0',
