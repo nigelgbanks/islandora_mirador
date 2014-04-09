@@ -67,6 +67,5 @@ function islandora_mirador_preprocess_islandora_mirador_viewer(&$variables) {
     ),
   ),
 );
-;
   $variables['object'] = drupal_render($render_array);
 }
