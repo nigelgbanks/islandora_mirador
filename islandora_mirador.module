@@ -12,6 +12,13 @@ function islandora_mirador_menu() {
     'access arguments' => array(TRUE),
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['islandora_mirador/iframe'] = array(
+    'title' => 'Islandora Mirador Iframe View',
+    'page callback' => 'islandora_mirador_iframe_viewer',
+    'page arguments' => array(2),
+    'access arguments' => array(TRUE),
+    'type' => MENU_NORMAL_ITEM,
+  );
   return $items;
 }
 
@@ -28,7 +35,35 @@ function islandora_mirador_theme($existing, $type, $theme, $path) {
         'base_path' => NULL,
       ),
     ),
+    'islandora_mirador_iframe_viewer' => array(
+      'template' => 'theme/islandora-mirador-iframe-viewer',
+      'variables' => array(
+        'iframe_content' => NULL,
+      ),
+    ),
   );
+}
+
+/**
+ * Drupal menu callback..
+ */
+function islandora_mirador_iframe_viewer() {
+  global $base_url;
+  $module_path = drupal_get_path('module', 'islandora_mirador');
+  return theme('islandora_mirador_iframe_viewer', array(
+    'iframe_content' => NULL,
+    )
+  );
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function islandora_mirador_preprocess_islandora_mirador_iframe_viewer(&$variables) {
+  $module_path = drupal_get_path('module', 'islandora_mirador');
+  drupal_add_css("$module_path/build/mirador/css/mirador-combined.min.css");
+  drupal_add_js("$module_path/build/mirador/mirador.js");
+  drupal_add_js("$module_path/js/startup.js");
 }
 
 /**
@@ -51,6 +86,11 @@ function islandora_mirador_viewer() {
 function islandora_mirador_preprocess_islandora_mirador_viewer(&$variables) {
   global $base_url;
   // TODO: the iframe source makes me vomit. Fix it.
+  // use '$base_url . "/islandora_mirador/iframe"' and
+  // configure menu callback as source.
+  //
+  // Direct: "$base_url/sites/all/modules/islandora_mirador/mirador_src/index.html"
+
   dsm($base_url, "host");
   $render_array = array(
   '#type' => 'container',
