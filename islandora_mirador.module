@@ -69,7 +69,11 @@ function islandora_mirador_preprocess_islandora_mirador_iframe_viewer(&$variable
 /**
  * Drupal menu callback..
  */
-function islandora_mirador_viewer() {
+function islandora_mirador_viewer($object) {
+  // TODO: Use the object, build a request url to adore-djatoka
+  // and pass it in the theme() call. Work with it in the 
+  // preprocess function below.
+
   global $base_url;
   $module_path = drupal_get_path('module', 'islandora_mirador');
   return theme('islandora_mirador_viewer', array(
@@ -87,27 +91,29 @@ function islandora_mirador_preprocess_islandora_mirador_viewer(&$variables) {
   global $base_url;
   // TODO: the iframe source makes me vomit. Fix it.
   // use '$base_url . "/islandora_mirador/iframe"' and
-  // configure menu callback as source.
+  // configure menu callback as source maybe?
   //
   // Direct: "$base_url/sites/all/modules/islandora_mirador/mirador_src/index.html"
 
-  dsm($base_url, "host");
-  $render_array = array(
-  '#type' => 'container',
-  '#attributes' => array(
-    'class' => array('my-class'),
-  ),
-  'iframe' => array(
-    '#theme' => 'html_tag',
-    '#tag' => 'iframe',
-    '#value' => '',
-    '#attributes' => array(
-      'src' => array("$base_url/sites/all/modules/islandora_mirador/mirador_src/index.html"),
-      'width' => '100%',
-      'height' => '700px',
-      'frameborder' => '0',
+  $render_array =
+    array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'my-class'
+        ),
     ),
-  ),
-);
+    'iframe' => array(
+      '#theme' => 'html_tag',
+      '#tag' => 'iframe',
+      '#value' => '',
+      '#attributes' => array(
+        'src' => array("$base_url/sites/all/modules/islandora_mirador/mirador_src/index.html"),
+        'width' => '100%',
+        'height' => '700px',
+        'frameborder' => '0',
+      ),
+    ),
+  );
   $variables['object'] = drupal_render($render_array);
 }
