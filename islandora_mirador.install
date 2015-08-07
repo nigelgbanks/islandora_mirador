@@ -1,2 +1,22 @@
 <?php
 
+/**
+ * @file
+ * Installation hooks for islandora_mirador.
+ */
+
+function islandora_mirador_requirements() {
+  $t = get_t();
+  $library_exists = libraries_get_path('mirador');
+
+  $requirements = array(
+    'mirador' => array(
+      'title' => $t('Mirador Library'),
+    ),
+  );
+  $requirements['mirador']['value'] = $library_exists ? $t('Installed') : $t('Not Found');
+  $requirements['mirador']['description'] = $library_exists ? NULL : $t("Please ensure that the Mirador source code is in your site's libraries folder.");
+  $requirements['mirador']['severity'] = $library_exists ? REQUIREMENT_OK : REQUIREMENT_WARNING;
+
+  return $requirements;
+}
