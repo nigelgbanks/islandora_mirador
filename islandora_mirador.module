@@ -1,25 +1,26 @@
 <?php
 
 /**
+ * @file
+ * Provides a minimal wrapper around the Mirador Viewer.
+ */
+
+// Shorthand for referencing the Mirador library.
+define('ISLANDORA_MIRADOR_LIB', 'mirador');
+
+/**
  * Implements hook_menu().
  */
 function islandora_mirador_menu() {
-  $items = array();
-  $items['islandora_mirador/view/%'] = array(
-    'title' => 'Islandora Mirador Viewer',
-    'page callback' => 'islandora_mirador_viewer',
-    'page arguments' => array(2),
-    'access arguments' => array(TRUE),
-    'type' => MENU_NORMAL_ITEM,
+  return array(
+    'islandora_mirador' => array(
+      'title' => 'Islandora Mirador Viewer',
+      'page callback' => 'theme',
+      'page arguments' => array('islandora_mirador_viewer'),
+      'access arguments' => array(TRUE),
+      'type' => MENU_NORMAL_ITEM,
+    ),
   );
-  $items['islandora_mirador/iframe'] = array(
-    'title' => 'Islandora Mirador Iframe View',
-    'page callback' => 'islandora_mirador_iframe_viewer',
-    'page arguments' => array(2),
-    //'access arguments' => TRUE,
-    'type' => MENU_NORMAL_ITEM,
-  );
-  return $items;
 }
 
 /**
@@ -28,92 +29,34 @@ function islandora_mirador_menu() {
 function islandora_mirador_theme($existing, $type, $theme, $path) {
   return array(
     'islandora_mirador_viewer' => array(
-      'template' => 'theme/islandora-mirador-viewer',
-      'variables' => array(
-        'object' => NULL,
-        'path' => NULL,
-        'base_path' => NULL,
-      ),
-    ),
-    'islandora_mirador_iframe_viewer' => array(
-      'template' => 'theme/islandora-mirador-iframe-viewer',
-      'variables' => array(
-        'iframe_content' => NULL,
-      ),
+      'file' => 'theme/theme.inc',
+      'variables' => array(),
     ),
   );
 }
 
 /**
- * Drupal menu callback..
+ * Implements hook_libraries_info().
  */
-function islandora_mirador_iframe_viewer() {
-  global $base_url;
-  $module_path = drupal_get_path('module', 'islandora_mirador');
-  return theme('islandora_mirador_iframe_viewer', array(
-    'iframe_content' => NULL,
-    )
-  );
-}
-
-/**
- * Implements hook_preprocess().
- */
-function islandora_mirador_preprocess_islandora_mirador_iframe_viewer(&$variables) {
-  $library_path = libraries_get_path('mirador');
-  $module_path = drupal_get_path('module', 'islandora_mirador');
-  drupal_add_css("$library_path/css/mirador-combined.min.css");
-  drupal_add_js("$library_path/js/src/mirador.js");
-  drupal_add_js("$module_path/js/startup.js");
-}
-
-/**
- * Drupal menu callback..
- */
-function islandora_mirador_viewer($object) {
-  // TODO: Use the object, build a request url to adore-djatoka
-  // and pass it in the theme() call. Work with it in the 
-  // preprocess function below.
-
-  global $base_url;
-  $module_path = drupal_get_path('module', 'islandora_mirador');
-  return theme('islandora_mirador_viewer', array(
-    'object' => NULL,
-    'path' => $module_path,
-    'base_path' => $base_url,
-    )
-  );
-}
-
-/**
- * Implements hook_preprocess().
- */
-function islandora_mirador_preprocess_islandora_mirador_viewer(&$variables) {
-  // TODO: the iframe source makes me vomit. Fix it.
-  // use '$base_url . "/islandora_mirador/iframe"' and
-  // configure menu callback as source maybe?
-  //
-  // Direct: "$base_url/sites/all/libraries/mirador/index.html"
-
-  $render_array =
-    array(
-      '#type' => 'container',
-      '#attributes' => array(
-        'class' => array(
-          'my-class'
+function islandora_mirador_libraries_info() {
+  return array(
+    'mirador' => array(
+      'name' => ISLANDORA_MIRADOR_LIB,
+      'vendor url' => 'http://projectmirador.org/',
+      'download url' => 'https://github.com/IIIF/mirador',
+      'version arguments' => array(
+        'file' => 'bower.json',
+        'pattern' => '/"version": "([0-9.]+)"/',
+        'lines' => 200,
+      ),
+      'files' => array(
+        'js' => array(
+          'build/mirador/mirador.js',
         ),
-    ),
-    'iframe' => array(
-      '#theme' => 'html_tag',
-      '#tag' => 'iframe',
-      '#value' => '',
-      '#attributes' => array(
-        'src' => array(libraries_get_path('mirador', TRUE) . "/index.html"),
-        'width' => '100%',
-        'height' => '700px',
-        'frameborder' => '0',
+        'css' => array(
+          'build/mirador/css/mirador-combined.min.css',
+        ),
       ),
     ),
   );
-  $variables['object'] = drupal_render($render_array);
 }

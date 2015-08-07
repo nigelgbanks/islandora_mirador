@@ -5,6 +5,9 @@
  * Installation hooks for islandora_mirador.
  */
 
+/**
+ * Implements hook_requirements().
+ */
 function islandora_mirador_requirements() {
   $t = get_t();
   $library_exists = libraries_get_path('mirador');
