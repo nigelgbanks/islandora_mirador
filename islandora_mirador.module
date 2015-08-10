@@ -13,12 +13,20 @@ define('ISLANDORA_MIRADOR_LIB', 'mirador');
  */
 function islandora_mirador_menu() {
   return array(
-    'islandora_mirador' => array(
-      'title' => 'Islandora Mirador Viewer',
-      'page callback' => 'theme',
-      'page arguments' => array('islandora_mirador_viewer'),
-      'access arguments' => array(TRUE),
+    // Stand alone viewer rendered in it's own page.
+    'mirador/demo' => array(
+      'title' => 'Mirador Demo',
+      'page callback' => 'islandora_mirador_demo_menu_item',
+      'file' => 'includes/callbacks.inc',
       'type' => MENU_NORMAL_ITEM,
+      'access callback' => TRUE,
+    ),
+    // iFrame.
+    'mirador' => array(
+      'page callback' => 'islandora_mirador_iframe_callback',
+      'file' => 'includes/callbacks.inc',
+      'type' => MENU_CALLBACK,
+      'access callback' => TRUE,
     ),
   );
 }
@@ -30,7 +38,25 @@ function islandora_mirador_theme($existing, $type, $theme, $path) {
   return array(
     'islandora_mirador_viewer' => array(
       'file' => 'theme/theme.inc',
-      'variables' => array(),
+      'variables' => array(
+        'settings' => array(),
+      ),
+    ),
+    'islandora_mirador_viewer_iframe' => array(
+      'file' => 'theme/theme.inc',
+      'template' => 'theme/islandora-mirador-viewer-iframe',
+      'render element' => 'page',
+      'variables' => array(
+        'settings' => array(),
+      ),
+    ),
+    'islandora_mirador_viewer_embedded' => array(
+      'file' => 'theme/theme.inc',
+      'variables' => array(
+        'src' => url('mirador'),
+        'width' => '100%',
+        'height' => '800px',
+      ),
     ),
   );
 }
